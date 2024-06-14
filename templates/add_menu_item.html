@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Menu Item</title>
+    <link rel="stylesheet" href="{% static 'add_menu_item.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Menu Item {% if category %}for {{ category.name }}{% endif %}</h2>
+        <form method="post" action="{% if category %}{% url 'add_menu_item' category.id %}{% else %}{% url 'add_menu_item' %}{% endif %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="buttons">
+                <button type="submit" name="add_another" class="btn add-another">Add Another Item</button>
+                <button type="submit" name="next" class="btn next">Next</button>
+            </div>
+        </form>
+        <form action="{% url 'back' %}">
+            <input type="submit" value="Back to Home Page">
+        </form>
+    </div>
+    <div>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

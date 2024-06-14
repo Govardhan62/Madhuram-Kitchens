@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color:lightgray;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            width:1200px;
+            padding-top: 50px;
+            margin-left: 300px;
+            background-color:lightyellow;
+        }
+        input[type="text"], input[type="number"], input[type="password"] {
+            width: 350px;
+            padding: 10px;
+            margin: 2px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        input[type="submit"] {
+            width: 200px;
+            padding: 10px;
+            background-color: orangered;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 70px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            color: orangered;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            margin-right: 20px;
+        }
+        .messages {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 350px;
+        }
+</style>
+<body>
+    <form action ="signup" method="post">
+        {% csrf_token %}
+        <h2><b>Signup Form</b></h2>
+        <label for="first_name">First Name:</label>
+        <input type="text" name ="first_name" placeholder="First Name"><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name ="last_name" placeholder="Last Name"><br>
+        <label for="username">Username:</label>
+        <input type="text" name ="username" placeholder="Username"><br>
+        <label for="mobile_number">Mobile Number:</label>
+        <input type="text" name="phone_number" placeholder="Phone Number (10 digits)" pattern="\d{10}" title="Please enter a 10-digit phone number" required><br>
+        <label for ="email">Email:</label>
+        <input type="email" name="email" placeholder="enter your email" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name ="password1" placeholder="Password"><br>
+        <label for="confirm_password">Confirm_password:</label>
+        <input type="password" name ="password2" placeholder="Confirm Password"><br>
+        <input type="submit" value="Signup">
+
+    </form>
+    <div class="messages">
+        {% for message in messages %}
+        <h3> {{message}} </h3>
+        {% endfor %}
+    </div>
+</body>
+</html>

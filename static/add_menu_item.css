@@ -1,0 +1,84 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:palevioletred;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: paleturquoise;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+}
+
+h2 {
+    color:darkmagenta;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+form .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+form .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form .btn.add-another {
+    background-color: #17a2b8;
+    color: #ffffff;
+}
+
+form .btn.add-another:hover {
+    background-color: #138496;
+}
+
+form .btn.next {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+form .btn.next:hover {
+    background-color: #218838;
+}
+
+input[type="text"], input[type="file"], select, textarea {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="file"]:focus, select:focus, textarea:focus {
+    border-color: #80bdff;
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active {
+    transform: scale(0.98);
+}

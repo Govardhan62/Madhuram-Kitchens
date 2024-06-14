@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Items</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'menu_items.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Menu Items</h1>
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {% for category in categories %}
+                <div class="category">
+                    <h2>{{ category.name }}</h2>
+                    {% if category.image %}
+                        <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-image">
+                    {% endif %}
+                    <div class="menu-items">
+                        {% for item in menu_items %}
+                            {% if item.category.id == category.id %}
+                                <div class="menu-item">
+                                    <input type="checkbox" name="menu_items" value="{{ item.id }}">
+                                    <label>{{ item.title }} - ₹{{ item.price }}</label>
+                                    <input type="number" name="quantities" min="1" value="1" class="quantity">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="order-button">Place Order</button>
+        </form>
+    </div>
+</body>
+</html>
