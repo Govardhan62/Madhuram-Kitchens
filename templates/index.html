@@ -250,6 +250,66 @@
             background-color: #ffcc99;
             margin: 15px;
         }
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color:  #ff6600;
+            color: white;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            display:inline-block;
+            float:left; 
+            padding-left:12px;
+            padding-right:12px;
+            height:60px;
+            padding-top:20px;
+        }
+        
+        .sidebar ul li {
+            width: 100%;
+            
+        }
+        
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar ul li a:hover {
+            background-color: #575757;
+        }
+        
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            box-sizing: border-box;
+        }
+
+        .main-sidebar{
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
         /* {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -334,15 +394,6 @@ button:hover {
                         <!-- Admin Navigation -->
                         <li>Welcome  {{user.username}}</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="add_category">Add Category & Menu Items</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="orders_table">Orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="users_table">Users</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="supervisorlogout">Logout</a>
                         </li>
                     {% else %}
@@ -384,6 +435,25 @@ button:hover {
             </ul>
         </div>
     </nav>
+
+    <div class="main-sidebar">
+        <div class="sidebar">
+             {% if user.is_staff %}
+            <ul>
+                <li>
+                    <a class="nav-link" href="add_category">Add Menu Items</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="orders_table">Orders</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="users_table">Users</a>
+                </li>
+
+            </ul>
+            {% endif %}
+        </div>
+        <div class="content">
     <!-- Hero Section -->
     <div class="hero-section">
         <div class="container">
@@ -517,6 +587,8 @@ button:hover {
         </div>
 
     </section>
+        </div>
+        </div>
 
     <!-- Footer -->
     <footer class="footer py-3 text-center">

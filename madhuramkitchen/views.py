@@ -237,17 +237,29 @@ def order_successful(request):
 
         # Send order confirmation email
     subject = 'Order Summary'
-    html_message = render_to_string('order_successful.html', {
+    html_message = render_to_string('order_confirmation.html', {
         'order': order,
         'order_items': order_items,
         'total_price': total_price,
         'user': user,
     })
     plain_message = strip_tags(html_message)
-    from_email = 'pelurigovardhan@gmail.com'
+    from_email = 'madhuramkitchens.com@gmail.com'
     to = user.email
 
     send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+    
+    subject_admin = 'New Order Placed'
+    html_message_admin = render_to_string('order_placed_email.html', {
+        'order': order,
+        'order_items': order_items,
+        'total_price': total_price,
+        'user': user,
+    })
+    plain_message_admin = strip_tags(html_message_admin)
+    to_admin = 'madhuramkitchens.com@gmail.com'  
+
+    send_mail(subject_admin, plain_message_admin, from_email, [to_admin], html_message=html_message_admin)
 
 
     return render(request, 'order_successful.html', {
